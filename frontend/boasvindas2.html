@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vIAje - Boas Vindas</title>
+  <link rel="stylesheet" href="css/fluxoboasvindas.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="retanguloBoasvindas">
+    <div class="card">
+      <h3>Seja bem-vindo(a) ao</h3>
+      <img src="img/viajeazul.png" alt="Logo vIAje" class="logo">
+
+      <h2 class="titulo">Tudo começa com uma nova viagem</h2>
+
+      <ol class="listaNumerada">
+        <li>Crie um novo evento clicando em <strong>nova viagem</strong></li>
+        <li><a href="#">Convide amigos</a> através do link</li>
+        <li>Responda a <strong>perguntas</strong> simples</li>
+      </ol>
+
+      <p class="destaque">
+        Pronto: a IA monta o primeiro roteiro automaticamente
+      </p>
+
+      <button id="botaoavancar" class="botaoboasvindas">Avançar</button>
+
+      <div class="dots">
+        <span class="dot"></span>
+        <span class="dot ativo"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("botaoavancar").addEventListener("click", function() {
+      window.location.href = "boasvindas3.html"; 
+    });
+  </script>
+</body>
+</html>

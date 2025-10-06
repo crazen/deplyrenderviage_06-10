@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Nova Senha - vIAje!</title>
+  <link rel="stylesheet" href="css/novasenha.css">
+</head>
+<body>
+  <div class="retanguloNovaSenha">
+    <div class="nova-senha-section">
+      <h2>Redefina sua senha</h2>
+      <div class="divisor"><span>———————————————————————————————————</span></div> 
+
+      <input type="password" id="novaSenha" placeholder="Nova senha" required>
+      <input type="password" id="confirmaSenha" placeholder="Confirme a nova senha" required>
+
+      <button id="btnRedefinir" class="redefinir">Redefinir</button>
+
+      <p id="msgNovaSenha"></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('btnRedefinir').addEventListener('click', async () => {
+      const senha = document.getElementById('novaSenha').value;
+      const confirma = document.getElementById('confirmaSenha').value;
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get('email'); // ✅ Pega o email da URL
+      const msg = document.getElementById('msgNovaSenha');
+
+      if (!senha || !confirma) {
+        msg.textContent = 'Preencha ambos os campos';
+        msg.style.color = 'red';
+        return;
+      }
+
+      if (senha.length < 6) {
+        msg.textContent = 'A senha deve ter pelo menos 6 caracteres';
+        msg.style.color = 'red';
+        return;
+      }
+
+      if (senha !== confirma) {
+        msg.textContent = 'As senhas não coincidem';
+        msg.style.color = 'red';
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/nova-senha', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, senha })
+        });
+
+        const data = await res.json();
+        msg.textContent = data.message || data.error;
+        msg.style.color = res.ok ? 'green' : 'red';
+
+        if (res.ok) {
+          setTimeout(() => window.location.href = 'login.html', 2000);
+        }
+      } catch (err) {
+        msg.textContent = 'Erro ao conectar com o servidor';
+        msg.style.color = 'red';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - vIAje!</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- TOPO -->
+  <header class="topbar">
+    <div class="left">
+      <img src="img/logo.png" alt="logo" class="logo-topo">
+    </div>
+    <div class="right">
+      <div class="notificacao">
+        <img src="img/bell.png" alt="notificação">
+        <span class="badge">3</span>
+      </div>
+      <div class="user-info">
+        <div class="user-text">
+          <span class="username">@user.name</span>
+          <span class="saudacao">Olá, Fulano da Silva!</span>
+        </div>
+        <img src="img/user.png" alt="user" class="user-icon">
+      </div>
+    </div>
+  </header>
+
+  <div class="linha"></div>
+
+  <!-- CONTEÚDO -->
+  <div class="dashboard">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <nav class="nav">
+        <button class="nav-item active">
+          <img src="img/as_viagens.png" alt="viagens" class="icon"> Minhas Viagens
+        </button>
+        <button class="nav-item">
+          <img src="img/icon- viagens anteriores.png" alt="anteriores" class="icon"> Viagens Anteriores
+        </button>
+        <button class="nav-item">
+          <img src="img/icon - despesas.png" alt="despesas" class="icon"> Despesas
+        </button>
+        <button class="nav-item">
+          <img src="img/config 1.png" alt="config" class="icon"> Minha Conta
+        </button>
+      </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+      <h1 class="title">Minhas Viagens</h1>
+
+      <div class="cards">
+        <div class="trip-card">
+          <img src="img/rio.jpg" alt="Rio de Janeiro">
+          <div class="trip-body">
+            <h3>Rio de Janeiro</h3>
+            <p>25 de outubro - 9 de novembro 2025</p>
+            <p>7 pessoas</p>
+            <button class="btn-primary">Visualizar Atividades</button>
+            <div class="trip-avatars">
+              <img src="img/user.png" alt="">
+              <img src="img/user.png" alt="">
+              <span class="more">+1</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-card">
+          <img src="img/gramado.jpg" alt="Gramado">
+          <div class="trip-body">
+            <h3>Gramado</h3>
+            <p>10 de abril - 17 de abril 2026</p>
+            <p>5 pessoas</p>
+            <button class="btn-primary">Visualizar Atividades</button>
+            <div class="trip-avatars">
+              <img src="img/user.png" alt="">
+              <img src="img/user.png" alt="">
+              <span class="more">+2</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="trip-card">
+          <img src="img/fortaleza.jpg" alt="Fortaleza">
+          <div class="trip-body">
+            <h3>Fortaleza</h3>
+            <p>5 de junho - 12 de junho 2026</p>
+            <p>12 pessoas</p>
+            <button class="btn-primary">Visualizar Atividades</button>
+            <div class="trip-avatars">
+              <img src="img/user.png" alt="">
+              <img src="img/user.png" alt="">
+              <span class="more">+3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button id="novaViagemBtn" class="fab">+ Nova Viagem</button>
+
+<script>
+  document.getElementById("novaViagemBtn").addEventListener("click", function() {
+    window.location.href = "criar-viagem.html";
+  });
+</script>
+
+
+    </main>
+  </div>
+</body>
+</html>

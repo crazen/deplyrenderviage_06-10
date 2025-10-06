@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vIAje - Boas-vindas</title>
+  <link rel="stylesheet" href="css/fluxoboasvindas.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="retanguloBoasvindas">
+    <div class="card">
+      <h3>Seja bem-vindo(a) ao</h3>
+      <img src="img/viajeazul.png" alt="Logo vIAje" class="logoBoasVindas">
+      <p class="descricao">
+        Somos uma plataforma feita para <strong>facilitar sua viagem.</strong>
+      </p>
+
+      <ul class="lista">
+        <li>Planeje tudo em um só lugar, sem confusão</li>
+        <li>A IA entende seu estilo e cria roteiros sob medida</li>
+        <li>Decisões em grupo de forma rápida e justa</li>
+        <li>Mais tempo curtindo, menos tempo organizando</li>
+      </ul>
+
+      <button id="botaocomecaragora" class="botaoboasvindas">Começar Agora</button>
+      
+
+      <div class="dots">
+        <span class="dot ativo"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("botaocomecaragora").addEventListener("click", function() {
+      window.location.href = "boasvindas2.html";
+    });
+  </script>
+</body>
+</html>

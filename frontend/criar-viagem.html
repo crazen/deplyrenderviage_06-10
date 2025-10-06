@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Criar nova viagem</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div id="logoHome" class="left"><img src="img/logo.png" alt="logo" style="height:40px;opacity:.95"></div>
+    <div class="right">
+      <div class="notificacao">
+        <img src="img/bell.png" alt="notificação">
+        <span class="badge">3</span>
+      </div>
+      <div class="user-info">
+        <div class="user-text">
+          <span class="username">@user.name</span>
+          <span class="saudacao">Olá, Fulano da Silva!</span>
+        </div>
+        <img src="img/user.png" alt="user" class="user-icon">
+      </div>
+    </div>
+  </header>
+
+  <div class="linha"></div>
+
+  <div class="page-header">
+    <div class="page-header-content">
+      <img src="img/voltar.png" alt="voltar" style="width:26px" />
+      <div class="titles">
+        <h2>Criar uma nova viagem</h2>
+        <p>Defina suas preferências para que nossa IA crie o roteiro perfeito para seu grupo.</p>
+      </div>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="card">
+      <h3>Informações Básicas</h3>
+
+      <!-- Datas -->
+      <div class="grid-2">
+        <div class="campo">
+          <label>Data de Início</label>
+          <div class="input-icon">
+            <img src="img/calendar.png" alt="cal" id="iconStart" />
+            <input id="dataInicio" type="text" placeholder="Selecionar data" readonly />
+          </div>
+        </div>
+        <div class="campo">
+          <label>Data de Fim</label>
+          <div class="input-icon">
+            <img src="img/calendar.png" alt="cal" id="iconEnd" />
+            <input id="dataFim" type="text" placeholder="Selecionar data" readonly />
+          </div>
+        </div>
+      </div>
+
+      <!-- Destino + Orçamento -->
+      <div class="grid-2">
+        <div class="campo" style="position:relative">
+          <label>Destino da Viagem</label>
+          <div class="input-icon">
+            <img src="img/destination.png" alt="">
+            <input id="destino" type="text" placeholder="Selecionar destino" autocomplete="off">
+          </div>
+          <div id="sugestoesDestinos" class="sugestoes"></div>
+        </div>
+
+        <div class="campo">
+          <label>Orçamento Individual</label>
+          <input id="orcamento" type="range" min="500" max="10000" step="100" value="2000">
+          <div class="orcamento-labels">
+            <span>R$ 500</span>
+            <span id="valorOrcamento">R$ 2.000</span>
+            <span>R$ 10.000+</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Participantes -->
+      <div class="grid-2">
+        <div class="campo">
+          <label>Adicionar participantes</label>
+          <div class="input-icon add-row">
+            <img src="img/participants.png" alt="">
+            <input id="novoParticipante" type="text" placeholder="Digite o nome e pressione Enter">
+            <button id="btnAdd" class="icon-btn" type="button">+</button>
+          </div>
+          <div id="participantes" class="chips"></div>
+        </div>
+      </div>
+
+      <!-- Ações: contador central + botão próximo à direita -->
+      <div class="acoes">
+        <div id="contadorParticipantes" class="contador-part">0/4</div>
+
+      <div class="acoes">
+        <button class="proximo-btn" type="button" onclick="irParaEtapa2()">
+          <span>PRÓXIMO</span>
+          <div class="circulo">
+            <img src="img/voltar.png" alt="Próximo">
+          </div>
+        </button>
+      </div>
+
+  <!-- Modal calendário -->
+  <div id="calendarModal" class="calendar-modal" aria-hidden="true">
+    <div class="calendar-content" tabindex="-1">
+      <div class="calendar-header">
+        <button id="prevMonth" class="btn-nav">◀</button>
+        <div id="calendarTitle" class="calendar-title"></div>
+        <button id="nextMonth" class="btn-nav">▶</button>
+      </div>
+      <div class="calendar-weekdays">
+        <div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div><div>Dom</div>
+      </div>
+      <div id="calendarDays" class="calendar-grid"></div>
+      <div class="calendar-footer">
+        <button id="closeCalendar" class="btn-close" type="button">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/scrip.js"></script>
+</body>
+</html>

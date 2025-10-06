@@ -1,0 +1,8 @@
+// começo do arquivo de código para integração do banco de dados (parte de sql) com o modelo LLM
+// * chave api deve ser adicionada num .env para sigilo de chaves
+
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseUrl = 'https://cqhobhnefgjrgunxyser.supabase.co'
+const supabaseKey = process.env.SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)

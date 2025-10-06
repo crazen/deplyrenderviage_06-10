@@ -1,0 +1,87 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", arial;
+}
+
+/* Tela nova senha */
+body {
+  background: #174B5E;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.retanguloNovaSenha {
+  display: flex;
+  width: 600px;
+  height: 250px;
+  background: white;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.nova-senha-section {
+  flex: 1;
+  padding: 20px;
+  padding-left: -100px;
+  width: 600px;
+  height: 250px;
+  border-radius: 40px;
+  background: white;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
+
+.divisor {
+  text-align: start;
+  color: #8f8f8f;
+  white-space: nowrap;
+  font-family: arial;
+  margin-top: -15px;
+}
+
+.nova-senha-section h2 {
+  font-size: 24px;
+  text-align: left;
+  color: #174B5E;
+  margin-bottom: 15px;
+}
+
+.nova-senha-section input {
+  width: 80%;
+  margin-left: 50px;
+  padding: 10px;
+  margin-top: 15px;
+  border: 2px solid #c6c6c6;
+  border-radius: 40px;
+}
+
+.redefinir {
+  width: 120px;
+  height: 40px;
+  border-radius: 40px;
+  background: #174B5E;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: 375px;
+}
+
+.redefinir:hover {
+  background: #0f3b4b;
+}
+
+#msgNovaSenha {
+  margin-top: 10px;
+  font-weight: 600;
+  text-align: center;
+}

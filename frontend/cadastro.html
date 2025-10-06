@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - viAje!</title>
+  <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+  <div class="container">
+    <h1><img src="img/logo.png" alt="Logo" class="logo"></h1>
+    <p class="descricao">Criar uma nova conta<br>É rápido e fácil.</p>
+
+    <button class="google-btn">
+      <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo">
+      Cadastrar-se com Google
+    </button>
+
+    <div class="divider"></div>
+
+    <form id="cadastroForm">
+      <div class="inline-inputs">
+        <input type="text" id="nome" placeholder="Nome" required>
+        <input type="text" id="sobrenome" placeholder="Sobrenome" required>
+      </div>
+      <input type="email" id="email" placeholder="seu@email.com" required>
+      <input type="password" id="senha" placeholder="Senha" required>
+      <input type="password" id="confirmarSenha" placeholder="Confirmar senha" required>
+      <p id="erro" class="error"></p>
+      <button type="submit" id="botaoCadastro" class="btn-submit">Cadastrar-se</button>
+    </form>
+
+    <a href="login.html" class="login-link">Já possui uma conta?</a>
+  </div>
+  <script>
+    document.getElementById("botaoCadastro").addEventListener("click", function() {
+      window.location.href = "login.html";
+    });
+  </script>
+  <script src="js/cadastro.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>vIAje! • Popup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/modal_bem_vindo_viagem.css" />
+</head>
+<body>
+
+  <main class="background"></main>
+
+  <!-- Overlay + Modal -->
+  <div class="popup-overlay" data-overlay hidden></div>
+
+  <section
+    class="popup-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="popup-title"
+    aria-describedby="popup-desc"
+    data-modal
+    hidden
+  >
+    <button class="popup-close" aria-label="Fechar" data-close>&times;</button>
+
+    <div class="popup-hero">
+      <img id="popup-image" alt=""/>
+    </div>
+
+    <div class="popup-body">
+      <h3 id="popup-title">
+        <span id="destination-name">Budapeste</span> te espera!
+      </h3>
+
+      <p class="popup-text" id="popup-desc">
+        Queremos que a sua viagem seja ainda mais incrível e personalizada para você.
+      </p>
+      <p class="popup-text">
+        Responda a algumas perguntas para criar o roteiro personalizado para a sua viagem!
+      </p>
+
+      <div class="popup-actions">
+        <button class="btn btn-secondary" type="button" data-later>
+          Quero responder outra hora.
+        </button>
+
+        <button class="btn btn-primary" type="button" data-start autofocus>
+          Vamos lá!
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script type="module" src="../backend/modal_bem_vindo_viagem.js" defer></script>
+</body>
+</html>
