@@ -1,105 +1,65 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Criar Nova Viagem</title>
-
-  <!-- Fonte Outfit -->
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <title>Login - vIAje!</title>
+  <link rel="stylesheet" href="css/fluxologinsenha.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-  <!-- Topbar -->
-  <header class="topbar">
-    <div class="left">
-      <img src="img/logo.png" class="logo-img" alt="Logo" />
-    </div>
-    <div class="right">
-      <img src="img/bell.png" class="icon" alt="Notificações" />
-      <span class="user">@user.name<br/>Olá, Fulano da Silva!</span>
-      <img src="img/user.png" class="avatar" alt="Usuário" />
-    </div>
-  </header>
-
-  <!-- Linha branca logo abaixo da topbar -->
-  <div class="linha"></div>
-
-  <!-- Cabeçalho azul com título -->
-  <div class="page-header">
-    <div class="page-header-content">
-      <img src="img/voltar.png" alt="Voltar" class="icon-back"/>
-      <div>
-        <h2>Criar uma nova viagem</h2>
-        <p>Defina suas preferências para que nossa IA crie o roteiro perfeito para seu grupo.</p>
+  <div class="container">
+    <div class="login-section">
+      
+      <div class="header">
+        <img src="img/viajeazul.png" alt="Logo Viaje" class="logo">
+        <p class="subtitle">Planeje suas viagens em grupo de forma inteligente.</p>
       </div>
+
+      <div class="google-login">
+        <div id="g_id_onload"
+            data-client_id="9988049651881-sotdvcg3ksdd5isrkjog8he4cq3tbtjl.apps.googleusercontent.com"
+            data-callback="handleCredentialResponse"
+            data-auto_prompt="false">
+        </div>
+
+        <div id="g_id_signin"></div>
+
+        <div class="divider"><span>——————— OU ———————</span></div>
+      </div>
+
+      <form id="loginForm" class="form">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="seu@email.com" required>
+
+        <label for="password">Senha</label>
+        <input type="password" id="password" placeholder="********" required>
+
+        <button type="submit" class="entrar">Entrar</button>
+      </form>
+
+      <div class="links">
+        <p>Não possui conta? <a href="cadastro.html">Cadastre-se</a></p>
+        <a href="esqueceu-senha.html">Esqueceu sua senha?</a>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <img src="img/travel.png" alt="Grupo viajando" class="hero-img">
+      <h2>Organize suas viagens sem stress</h2>
+      <p>
+        IA, divisão automática de custos e decisões colaborativas em um só lugar, 
+        a plataforma que você não sabia que precisava!
+      </p>
     </div>
   </div>
 
-  <!-- Conteúdo principal -->
-  <main class="container">
-    <section class="card">
-      <h3>Informações Básicas</h3>
-
-      <!-- Período da Viagem -->
-      <div class="grid-2">
-        <div class="campo">
-          <label>Data de Início</label>
-          <div class="input-icon">
-            <img src="img/calendar.png" alt="Calendário" />
-            <input type="date" id="dataInicio" />
-          </div>
-        </div>
-        <div class="campo">
-          <label>Data de Fim</label>
-          <div class="input-icon">
-            <img src="img/calendar.png" alt="Calendário" />
-            <input type="date" id="dataFim" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Destino -->
-      <div class="campo">
-        <label>Destino da Viagem</label>
-        <div class="input-icon">
-          <img src="img/destination.png" alt="Destino" />
-          <input type="text" id="destino" placeholder="Selecionar destino" />
-        </div>
-      </div>
-
-      <!-- Participantes -->
-      <div class="campo">
-        <label>Adicionar participantes</label>
-        <div class="input-icon add-row">
-          <img src="img/participants.png" alt="Participantes" />
-          <input
-            type="text"
-            id="novoParticipante"
-            placeholder="Digite o nome e pressione Enter"
-            autocomplete="off"
-          />
-          <button type="button" id="btnAdd" class="icon-btn" aria-label="Adicionar participante">+</button>
-        </div>
-        <div id="participantes" class="chips"></div>
-      </div>
-
-      <!-- Orçamento -->
-      <div class="campo">
-        <label>Orçamento Individual</label>
-        <input type="range" id="orcamento" min="500" max="10000" step="100" value="2000" />
-        <div class="orcamento-valor" id="valorOrcamento">R$ 2.000</div>
-      </div>
-
-      <div class="acoes">
-      <button class="proximo-btn">
-        <span>PRÓXIMO</span>
-        <div class="circulo">
-          <img src="img/voltar.png" alt="Próximo">
-        </div>
-      </button>
-    </div>
-
-  <script src="js/script.js"></script>
+  <script src="js/script.js">
+    //Deploy
+    fetch("/api/ping")
+        .then(r => r.json())
+        .then(d => document.getElementById("out").textContent = JSON.stringify(d, null, 2))
+        .catch(console.error);
+  </script>
 </body>
-</html>     
+</html>
