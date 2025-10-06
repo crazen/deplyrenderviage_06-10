@@ -9,17 +9,20 @@ import { fileURLToPath } from 'url';
 import bcrypt from 'bcrypt'; // recomendado
 import sgMail from '@sendgrid/mail';
 
+// Configurações de path
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000; // ✅ necessário para Render
 
 app.use(cors());
 app.use(express.json());
+
+// ✅ Servir arquivos estáticos da pasta frontend
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-// Configura o SendGrid
+// ✅ Configura o SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // --- Cadastro ---
@@ -108,7 +111,6 @@ app.post('/recuperar-senha', async (req, res) => {
 
     if (!email) return res.status(400).json({ error: 'Email obrigatório' });
 
-    // Verifica se o usuário existe
     const { data: user, error } = await supabase
       .from('viajantes')
       .select('*')
@@ -119,16 +121,16 @@ app.post('/recuperar-senha', async (req, res) => {
 
     const link = `http://localhost:5500/novasenha.html?email=${encodeURIComponent(email)}`;
 
-    // --- Debug da API Key ---
     if (!process.env.SENDGRID_API_KEY) {
       console.error('Erro: SENDGRID_API_KEY não encontrada no .env');
       return res.status(500).json({ error: 'Chave do SendGrid não configurada' });
     }
+
     console.log('SendGrid API Key encontrada, enviando email...');
 
     const msg = {
       to: email,
-      from: 'viajeemgrupofacil@gmail.com', // verifique no painel SendGrid
+      from: 'viajeemgrupofacil@gmail.com',
       subject: 'Redefinição de senha - vIAje!',
       html: `
         <p>Olá ${user.nome || ''},</p>
@@ -138,7 +140,6 @@ app.post('/recuperar-senha', async (req, res) => {
       `
     };
 
-    // Envio do email com log detalhado
     try {
       await sgMail.send(msg);
       console.log(`Email de redefinição enviado para ${email}`);
@@ -178,4 +179,15 @@ app.post('/nova-senha', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
+// ✅ Redireciona a raiz para login.html
+app.get('/', (req, res) => {
+  res.redirect('/login.html');
+});
+
+// ✅ Rota coringa: qualquer rota desconhecida redireciona para login.html
+app.get('*', (req, res) => {
+  res.redirect('/login.html');
+});
+
+// ✅ Iniciar servidor
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
