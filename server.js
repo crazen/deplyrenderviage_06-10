@@ -9,20 +9,17 @@ import { fileURLToPath } from 'url';
 import bcrypt from 'bcrypt'; // recomendado
 import sgMail from '@sendgrid/mail';
 
-// Configurações de path (necessário para ES Modules)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 3000; // ✅ Render usa PORT da env
+const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
-
-// ✅ Servir arquivos estáticos da pasta frontend
 app.use(express.static(path.join(__dirname, 'frontend')));
 
-// ✅ Configura o SendGrid
+// Configura o SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // --- Cadastro ---
@@ -111,6 +108,7 @@ app.post('/recuperar-senha', async (req, res) => {
 
     if (!email) return res.status(400).json({ error: 'Email obrigatório' });
 
+    // Verifica se o usuário existe
     const { data: user, error } = await supabase
       .from('viajantes')
       .select('*')
@@ -121,6 +119,7 @@ app.post('/recuperar-senha', async (req, res) => {
 
     const link = `http://localhost:5500/novasenha.html?email=${encodeURIComponent(email)}`;
 
+    // --- Debug da API Key ---
     if (!process.env.SENDGRID_API_KEY) {
       console.error('Erro: SENDGRID_API_KEY não encontrada no .env');
       return res.status(500).json({ error: 'Chave do SendGrid não configurada' });
@@ -129,7 +128,7 @@ app.post('/recuperar-senha', async (req, res) => {
 
     const msg = {
       to: email,
-      from: 'viajeemgrupofacil@gmail.com',
+      from: 'viajeemgrupofacil@gmail.com', // verifique no painel SendGrid
       subject: 'Redefinição de senha - vIAje!',
       html: `
         <p>Olá ${user.nome || ''},</p>
@@ -139,6 +138,7 @@ app.post('/recuperar-senha', async (req, res) => {
       `
     };
 
+    // Envio do email com log detalhado
     try {
       await sgMail.send(msg);
       console.log(`Email de redefinição enviado para ${email}`);
@@ -178,10 +178,4 @@ app.post('/nova-senha', async (req, res) => {
   }
 });
 
-// ✅ Rota para exibir login.html como página inicial
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'login.html'));
-});
-
-// ✅ Iniciar servidor
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
